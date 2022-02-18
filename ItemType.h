@@ -7,7 +7,7 @@
 using namespace std;
 
 /* An enumerator for the ItemType class. */
-enum Comparison {GREATER, LESS, EQUAL};
+enum Comparisson {GREATER, LESS, EQUAL};
 
 /* A class for constructing ItemTypes. */
 class ItemType {
@@ -27,6 +27,6 @@ public:
 
 private:
     int value;
-} //
+}; //
 
 #endif

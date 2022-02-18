@@ -1,8 +1,9 @@
+#ifndef LISTNODE_H
+#define LISTNODE_H
 
-
-#import <iostream>
-#import <cstdlib>
-#import "ItemType.h"
+#include <iostream>
+#include <cstdlib>
+#include "ItemType.h"
 
 using namespace std;
 
@@ -10,4 +11,6 @@ class ListNode {
 public:
     ItemType item;
     ListNode *next;
-} // ListNode
+}; // ListNode
+
+#endif

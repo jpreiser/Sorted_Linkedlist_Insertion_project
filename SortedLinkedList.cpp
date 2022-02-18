@@ -4,25 +4,25 @@
 #include <iostream>
 #include <fstream>
 #include "SortedLinkedList.h"
-#include "NodeType.h"
+#include "ItemType.h"
 #include "ListNode.h"
 
 
 using namespace std;
 
 /* Initialize a sorted linked list object. */
-SortedLinkedList() {
-	head = null;
-	currentPos = null;
+SortedLinkedList::SortedLinkedList() {
+	head = NULL;
+	currentPos = NULL;
 }
 
 /* Free up all the user allocated memory and destroy the SLL instance. */
-~SortedLinkedList() {
-	head =
+SortedLinkedList::~SortedLinkedList() {
+	head = NULL;
 }
 
 /* Return the length of the linked list. */
-int length() const {
+int length() {
 
 }
 

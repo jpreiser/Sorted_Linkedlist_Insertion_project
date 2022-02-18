@@ -5,7 +5,7 @@
 #include <fstream>
 #include "ItemType.h"
 
-using namepace std;
+using namespace std;
 
 ItemType::ItemType() {
 } // ItemType

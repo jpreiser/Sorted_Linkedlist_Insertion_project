@@ -9,7 +9,7 @@ using namespace std;
 
 int main() {
 
-	char choice = '';
+	char choice;
 	while(1) {
 		cout << "Commands:" << endl;
 		cout << "(i) - Insert value" << endl;

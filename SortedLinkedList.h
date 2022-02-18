@@ -13,7 +13,7 @@ public:
     /* Initialize a sorted linked list object. */
     SortedLinkedList();
 
-    /* Free up all the user allocated memory and destruct the SLL instance. */
+    /* Free up all the user allocated memory and destroy the SLL instance. */
     ~SortedLinkedList();
 
     /* Return the length of the linked list. */
@@ -40,7 +40,7 @@ public:
     /* Deletes alternating nodes in a linked list, skipping the first node. */
     SortedLinkedList deleteAlternatingNodes(SortedLinkedList list);
 
-    /* Findes the common elements in two sorted linked lists and retrurns a sorted list of those common elements. */
+    /* Finds the common elements in two sorted linked lists and returns a sorted list of those common elements. */
     SortedLinkedList findCommon(SortedLinkedList list1, SortedLinkedList list2);
 
 private:
