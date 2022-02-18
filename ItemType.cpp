@@ -7,6 +7,9 @@
 
 using namepace std;
 
+ItemType::ItemType() {
+} // ItemType
+
 Comparisson ItemType::compareTo(ItemType item) {
     Comparisson comp;
     if (item.getValue() == value) {
