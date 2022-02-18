@@ -6,12 +6,12 @@
 
 using namespace std;
 
-/* An enumerator for the ItemType class. */
-enum Comparisson {GREATER, LESS, EQUAL};
-
 /* A class for constructing ItemTypes. */
 class ItemType {
 public:
+	/* An enumerator for the ItemType class. */
+	enum Comparisson {GREATER, LESS, EQUAL};
+
     // Default Constructor
     ItemType();
 

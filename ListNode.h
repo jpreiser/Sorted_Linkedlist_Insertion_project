@@ -10,7 +10,7 @@ using namespace std;
 class ListNode {
 public:
     ItemType item;
-    ListNode *next;
+    ListNode *next = NULL;
 }; // ListNode
 
 #endif

@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
@@ -23,10 +21,12 @@ Comparisson ItemType::compareTo(ItemType item) {
 
 } // compareTo
 
+/* Returns the value of the ItemType.*/
 int ItemType::getValue() const {
     return value;
 } // getValue
 
+/* Assigns a value to the val of the ItemType.*/
 void ItemType::initialize(int num) {
     value = num;
 } //
