@@ -6,25 +6,25 @@
 using namespace std;
 
 ItemType::ItemType() {
+	value = 0;
 } // ItemType
 
-Comparisson ItemType::compareTo(ItemType item) {
-    Comparisson comp;
-    if (item.getValue() == value) {
-        comp = EQUAL;
-    } else if (item.getValue() > value) {
-        comp = GREATER;
-    } else if (item.getValue() < value) {
-        comp = LESS;
-    }
-    return comp;
 
-} // compareTo
+ItemType::Comparisson ItemType::compareTo(ItemType item) {
+    if (item.getValue() == value) {
+        return EQUAL;
+    } else if (item.getValue() > value) {
+        return GREATER;
+    } else { //if (item.getValue() < value) {
+        return LESS;
+    } // compareTo
+}
 
 /* Returns the value of the ItemType.*/
 int ItemType::getValue() const {
     return value;
 } // getValue
+
 
 /* Assigns a value to the val of the ItemType.*/
 void ItemType::initialize(int num) {
