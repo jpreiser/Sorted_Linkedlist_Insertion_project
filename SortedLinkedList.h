@@ -1,5 +1,5 @@
-
-
+#ifndef SORTEDLINKEDLIST_H
+#define SORTEDLINKEDLIST_H
 
 #include <cstdlib>
 #include <iostream>
@@ -47,4 +47,6 @@ private:
     ListNode *head;
     ListNode *currentPos;
 
-} // SortedLinkedList
+}; // SortedLinkedList
+
+#endif
