@@ -1,4 +1,5 @@
-
+#ifndef ITEMTYPE_H
+#define ITEMTYPE_H
 
 #include <iostream>
 #include <cstdlib>
@@ -27,3 +28,5 @@ public:
 private:
     int value;
 } //
+
+#endif
