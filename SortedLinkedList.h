@@ -17,7 +17,7 @@ public:
     ~SortedLinkedList();
 
     /* Return the length of the linked list. */
-    int length() const;
+    const int length();
 
     /* Insert item into the linked list while maintaining the ascending order of the list. */
     void insertItem(ItemType item);
@@ -29,10 +29,13 @@ public:
     int searchItem(ItemType item);
 
     /* Returns the next item in the list pointed to by this current position pointer. */
-    ItemType GetNextItem();
+    ItemType getNextItem();
 
     /* Reset the currentPos pointer to null to reset the list. */
-    void ResetList();
+    void resetList();
+
+    /* A function for printing out the current list. */
+    void printList(SortedLinkedList toPrint);
 
     /* Takes two lists and merges them, sorting them into a new sorted list. */
     SortedLinkedList merge(SortedLinkedList list1, SortedLinkedList list2);
