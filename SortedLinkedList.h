@@ -31,6 +31,9 @@ public:
     /* Returns the next item in the list pointed to by this current position pointer. */
     ItemType getNextItem();
 
+    /* A method for retrieving a specified node from the list. */
+    ListNode* getNode(int index);
+
     /* Reset the currentPos pointer to null to reset the list. */
     void resetList();
 
@@ -41,10 +44,10 @@ public:
     SortedLinkedList merge(SortedLinkedList list1, SortedLinkedList list2);
 
     /* Deletes alternating nodes in a linked list, skipping the first node. */
-    SortedLinkedList deleteAlternatingNodes(SortedLinkedList list);
+    void deleteAlternatingNodes();
 
     /* Finds the common elements in two sorted linked lists and returns a sorted list of those common elements. */
-    SortedLinkedList findCommon(SortedLinkedList list1, SortedLinkedList list2);
+    void findCommon(SortedLinkedList comm);
 
 private:
     ListNode *head;

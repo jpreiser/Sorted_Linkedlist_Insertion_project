@@ -77,7 +77,7 @@ void SortedLinkedList::deleteItem(ItemType item) {
 	if (head == NULL) {
 		cout << "You cannot delete from an empty list." << endl;
 		return;
-	} else if (list.length() == 1) {
+	} else if (length() == 1) {
 		if (item.compareTo(head->item) == ItemType::EQUAL) {
 			deleter = head;
 			delete deleter;
@@ -138,8 +138,29 @@ int SortedLinkedList::searchItem(ItemType item) {
 
 /* Returns the next item in the list pointed to by this current position pointer. */
 ItemType SortedLinkedList::getNextItem() {
+	ListNode* search = currentPos;
+	if (head == NULL) {
+		cout << "List is empty." << endl;
+		ItemType empty;
+		return empty;
+	} else if (currentPos == NULL) {
+		currentPos = head;
+		return currentPos->item;
+	} else {
+		currentPos = currentPos->next;
+	}
+	return search->item;
+} //getNext
 
-}
+/* Returns a node from a specified index. */
+ListNode* SortedLinkedList::getNode(int index) {
+	ListNode* toGet = head;
+	while (index != 0 and toGet != NULL) {
+		toGet = toGet->next;
+		index--;
+	}
+	return toGet;
+} // getNode
 
 /* Reset the currentPos pointer to null to reset the list. */
 void SortedLinkedList::resetList() {
@@ -149,8 +170,10 @@ void SortedLinkedList::resetList() {
 void SortedLinkedList::printList(SortedLinkedList list) {
 	int i = list.length();
 	ListNode* printer = head;
+	ItemType toPrint;
 	while (i != 0 && printer != NULL) {
-		cout << printer->getNextItem().getValue() << endl;
+		toPrint = printer->item;
+		cout << toPrint.getValue() << endl;
 		printer = printer->next;
 		i --;
 	}
@@ -159,14 +182,48 @@ void SortedLinkedList::printList(SortedLinkedList list) {
 /* Function for merging two sorted linked lists.*/
 SortedLinkedList merge(SortedLinkedList list1, SortedLinkedList list2) {
 	SortedLinkedList sorted;
+	int length = list2.length();
+	for (int i = 0; i < length; i++) {
+		cout << "Temp" << endl;
+	}
 }
 
 /* Deletes alternating nodes in a linked list, skipping the first node. */
-SortedLinkedList deleteAlternatingNodes(SortedLinkedList list){
+void SortedLinkedList::deleteAlternatingNodes() {
+	ListNode* deleter = head;
+	int odd = 0;
+	while (deleter != NULL) {
+		if (odd % 2 == 1) {
+			deleteItem(deleter->item);
+		}
+		deleter = deleter->next;
+		odd = odd + 1;
+	}
+}
 
+/* Prints out the common elements between the called list and provided list. */
+void SortedLinkedList::findCommon(SortedLinkedList comm) {
+	SortedLinkedList common;
+	for (int i = 0; i < comm.length(); i++) {
+		ListNode* temp = comm.getNode(i);
+		if (searchItem(temp->item) != -1) {
+			common.insertItem(temp->item);
+		}
+	}
+
+	while(head != NULL) {
+		deleteItem(head->item);
+	}
+	resetList();
+
+	for (int i = 0; i < common.length(); i++) {
+		insertItem(common.getNextItem());
+	}
 }
 
 
-SortedLinkedList findCommon(SortedLinkedList list1, SortedLinkedList list2) {
 
-}
+
+
+
+
