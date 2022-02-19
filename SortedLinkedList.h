@@ -41,7 +41,7 @@ public:
     void printList(SortedLinkedList toPrint);
 
     /* Takes two lists and merges them, sorting them into a new sorted list. */
-    SortedLinkedList merge(SortedLinkedList list1, SortedLinkedList list2);
+    SortedLinkedList merge(SortedLinkedList toMerge);
 
     /* Deletes alternating nodes in a linked list, skipping the first node. */
     void deleteAlternatingNodes();
