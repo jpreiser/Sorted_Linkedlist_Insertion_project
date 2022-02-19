@@ -27,7 +27,14 @@ SortedLinkedList::~SortedLinkedList() {
 /* Return the length of the linked list. */
 const int SortedLinkedList::length() {
 	int length = 0;
-	//figure this out
+	ListNode* counter = head;
+	if (head == NULL) {
+		return length;
+	}
+	while (counter != NULL) {
+		counter = counter->next;
+		length = length + 1;
+	}
 
 	return length;
 } // length
@@ -180,13 +187,20 @@ void SortedLinkedList::printList(SortedLinkedList list) {
 }
 
 /* Function for merging two sorted linked lists.*/
-SortedLinkedList merge(SortedLinkedList list1, SortedLinkedList list2) {
+SortedLinkedList SortedLinkedList::merge(SortedLinkedList toMerge) {
 	SortedLinkedList sorted;
-	int length = list2.length();
+	int length = toMerge.length();
 	for (int i = 0; i < length; i++) {
-		cout << "Temp" << endl;
+		if(toMerge.searchItem(toMerge.getNode(i)->item) != -1) {
+			cout << "Sorry. You cannot insert the duplicate item." << endl;
+			continue;
+		}
 	}
-}
+	for (int i = 0; i < toMerge.length(); i++) {
+		sorted.insertItem(toMerge.getNode(i)->item);
+	}
+	return sorted;
+} // merge
 
 /* Deletes alternating nodes in a linked list, skipping the first node. */
 void SortedLinkedList::deleteAlternatingNodes() {
