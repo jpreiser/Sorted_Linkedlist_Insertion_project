@@ -38,7 +38,7 @@ public:
     void resetList();
 
     /* A function for printing out the current list. */
-    void printList(SortedLinkedList toPrint);
+    void printList();
 
     /* Takes two lists and merges them, sorting them into a new sorted list. */
     SortedLinkedList merge(SortedLinkedList toMerge);

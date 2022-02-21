@@ -40,38 +40,45 @@ const int SortedLinkedList::length() {
 } // length
 
 /* Insert item into the linked list while maintaining the ascending order of the list. */
-void SortedLinkedList::insertItem(ItemType item) {
+void SortedLinkedList::insertItem(ItemType toInsert) {
+	ListNode* temp = new ListNode();
 	ListNode* loc = head;
-	ListNode* inserter = new ListNode;
+	ListNode* prev = new ListNode();
 
-	if(loc == NULL) {
-		inserter->item = item;
-		head = inserter;
-		loc = head;
+	if(head == NULL) {
+		temp->item = toInsert;
+		head = temp;
+		currentPos = head;
 		return;
 	}
 
-	ListNode* prevloc = NULL;
+	if (toInsert.compareTo(loc->item) == ItemType::GREATER) {
+		temp->item = toInsert;
+		temp->next = head;
+		head = temp;
+		return;
+	}
+
 	while (loc != NULL) {
-		if (item.compareTo(loc->item) == ItemType::LESS) {
+		if(toInsert.compareTo(loc->item) == ItemType::GREATER) {
 			break;
-		} else if ( item.compareTo(loc->item) == ItemType::EQUAL) {
-			cout << "Sorry. You cannot insert the duplicate item." << endl;
-			delete inserter;
+		} else if (toInsert.compareTo(loc->item) == ItemType::EQUAL) {
+			cout << "Cannot insert duplicate item." << endl;
+			delete temp;
 			return;
-		} else if (item.compareTo(loc->item) == ItemType::GREATER) {
-			inserter->item = item;
-			inserter->next = loc;
-			if (prevloc != NULL) {
-				prevloc->next = inserter;
-			} else {
-				head = inserter;
-			}
-		} else {
-			prevloc = loc;
-			loc = loc->next;
-		} // inserter if/else loop
-	} // while
+		}
+		prev = loc;
+		loc = loc->next;
+	}
+
+	temp->item = toInsert;
+	temp->next = loc;
+	if (prev != NULL) {
+		prev->next = temp;
+	} else {
+		head = temp;
+	}
+
 } // insert
 
 /* ListNode that contains item should be deleted. */
@@ -174,16 +181,15 @@ void SortedLinkedList::resetList() {
 	currentPos = head;
 }
 
-void SortedLinkedList::printList(SortedLinkedList list) {
-	int i = list.length();
+void SortedLinkedList::printList() {
 	ListNode* printer = head;
 	ItemType toPrint;
-	while (i != 0 && printer != NULL) {
+	while (printer != NULL) {
 		toPrint = printer->item;
-		cout << toPrint.getValue() << endl;
+		cout << toPrint.getValue() << " ";
 		printer = printer->next;
-		i --;
 	}
+	cout << '\n';
 }
 
 /* Function for merging two sorted linked lists.*/

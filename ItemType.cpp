@@ -11,12 +11,12 @@ ItemType::ItemType() {
 
 
 ItemType::Comparisson ItemType::compareTo(ItemType item) {
-    if (item.getValue() == value) {
-        return EQUAL;
+    if (item.getValue() < value) {
+        return LESS;
     } else if (item.getValue() > value) {
         return GREATER;
     } else { //if (item.getValue() < value) {
-        return LESS;
+        return EQUAL;
     } // compareTo
 }
 
