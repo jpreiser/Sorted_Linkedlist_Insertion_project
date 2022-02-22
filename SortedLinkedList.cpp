@@ -44,11 +44,11 @@ void SortedLinkedList::insertItem(ItemType toInsert) {
 	ListNode* prev = new ListNode();
 	ListNode* loc = head;
 
-
 	if(head == NULL) {
 		temp->item = toInsert;
 		head = temp;
 		currentPos = head;
+		delete(temp);
 		return;
 	}
 
@@ -56,6 +56,7 @@ void SortedLinkedList::insertItem(ItemType toInsert) {
 		temp->item = toInsert;
 		temp->next = head;
 		head = temp;
+		delete(temp);
 		return;
 	}
 
@@ -86,13 +87,16 @@ void SortedLinkedList::deleteItem(ItemType item) {
 	ListNode* deleter;
 
 	// Deleting from an empty list
-	if (head == NULL) {
+	if (loc == NULL) {
 		cout << "You cannot delete from an empty list." << endl;
+		return;
 	} else if (length() == 1) {
 		if (item.compareTo(head->item) == ItemType::EQUAL) {
 			deleter = head;
+			delete deleter;
 			head = NULL;
 			currentPos = head;
+			return;
 		} else {
 			cout << "Item not found." << endl;
 		}
@@ -146,6 +150,7 @@ ItemType SortedLinkedList::getNextItem() {
 	if (head == NULL) {
 		cout << "List is empty." << endl;
 		ItemType empty;
+		empty.initialize(-1);
 		return empty;
 	} else if (currentPos == NULL) {
 		currentPos = head;

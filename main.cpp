@@ -94,12 +94,15 @@ int main(int argc, char *argv[]) {
 			}
 			toInsert.initialize(val);
 			list.insertItem(toInsert);
+			list.printList();
 			break;
 		case 'd':
-			cout << "Enter value to delete: " << endl;
+			list.printList();
+			cout << "Enter value to delete: ";
 			cin >> val;
 			toDel.initialize(val);
 			list.deleteItem(toDel);
+			list.printList();
 			break;
 		case 's':
 			cout << "Enter a value to search: ";
@@ -113,7 +116,9 @@ int main(int argc, char *argv[]) {
 			break;
 		case 'n':
 			next = list.getNextItem();
-			cout << next.getValue() << endl;
+			if (next.getValue() != -1) {
+				cout << next.getValue() << endl;
+			}
 			break;
 		case 'r':
 			list.resetList();
@@ -130,9 +135,9 @@ int main(int argc, char *argv[]) {
 			SortedLinkedList toMerge, merged;
 			int mergeSize;
 			int num;
-			cout << "Length of list to merge: " << endl;
+			cout << "Length of list to merge: ";
 			cin >> mergeSize;
-			cout << "List elements separated by spaces in order: " << endl;
+			cout << "List elements separated by spaces in order: ";
 			while (mergeSize-- > 0) {
 				cin >> num;
 				mergeNode.initialize(num);
