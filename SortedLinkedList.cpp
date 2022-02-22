@@ -76,6 +76,7 @@ void SortedLinkedList::insertItem(ItemType toInsert) {
 	} else {
 		head = temp;
 	}
+
 } // insert
 
 /* ListNode that contains item should be deleted. */
@@ -154,7 +155,7 @@ ItemType SortedLinkedList::getNextItem() {
 		currentPos = head;
 		search = currentPos;
 	} else {
-		currentPos = currentPos->next;
+        currentPos = currentPos->next;
 	}
 	return search->item;
 } //getNext
