@@ -4,7 +4,7 @@ Data Structures Assignment 2
 
 To compile the code, type 'make' into the command line.
 
-To run, type './make input.txt' into the command line.
+To run, type './make input.txt' or './make empty.txt' into the command line.
 
 To clean the directory, type 'make clean' into the command line.
 
