@@ -5,6 +5,7 @@
 #include <iterator>
 #include <string>
 #include <cstring>
+#include <ctype.h>
 #include <vector>
 #include "ItemType.h"
 #include "ListNode.h"
@@ -41,18 +42,22 @@ int main(int argc, char *argv[]) {
 		cout << "Usage ./main input.txt || ./main empty.txt" << endl;
 		return 1;
 	} else if (strcmp(argv[1], "input.txt") != 0) {
-		cout << "Usage ./main input.txt" << endl;
-		return 1;
+		if (strcmp(argv[1], "empty.txt") != 0) {
+			cout << "Usage ./main input.txt || ./main empty.txt" << endl;
+			return 1;
+		}
 	}
 
 	// create the linked list
 	SortedLinkedList list = SortedLinkedList();
-	list = createList();
-	list.printList();
+	if (strcmp(argv[1], "input.txt") == 0) {
+		list = createList();
+	}
 
 	char choice;
 	int val;
-	ItemType toInsert, toDel, toFind;
+	string input, temp;
+	ItemType toInsert, toDel, toFind, next, mergeNode;
 
 	cout << "Commands:" << endl;
 	cout << "(i) - Insert value" << endl;
@@ -107,39 +112,66 @@ int main(int argc, char *argv[]) {
 			}
 			break;
 		case 'n':
-			cout << "n" << endl;
+			next = list.getNextItem();
+			cout << next.getValue() << endl;
 			break;
 		case 'r':
 			list.resetList();
 			cout << "Iterator Reset" << endl;
 			break;
 		case 'a':
-			cout << "a" << endl;
+			cout << "List before alternate delete: ";
+			list.printList();
+			list.deleteAlternatingNodes();
+			cout << "List after alternate delete: ";
+			list.printList();
 			break;
-		case 'm':
+		case 'm': {
+			SortedLinkedList toMerge, merged;
 			int mergeSize;
+			int num;
 			cout << "Length of list to merge: " << endl;
 			cin >> mergeSize;
 			cout << "List elements separated by spaces in order: " << endl;
-			// while loop to take in elements to create new list to merge with current list.
-			cout << "List 1: ";
-			list.printList();
-
-			break;
-		case 't':
-			cout << "Length of list to find intersection: " << endl;
-			int comListSize;
-			cin >> comListSize;
-			cout << "List elements separated by spaces in order: ";
-
+			while (mergeSize-- > 0) {
+				cin >> num;
+				mergeNode.initialize(num);
+				toMerge.insertItem(mergeNode);
+			}
 			cout << "List 1: ";
 			list.printList();
 			cout << "List 2: ";
-
-			cout << "Intersection: ";
-			//list.findCommon(list2);
-			list.printList();
+			toMerge.printList();
+			merged = list.merge(list, toMerge);
+			merged.printList();
+			list = merged;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			break;
+		}
+		case 't': {
+			SortedLinkedList intersection, intersector;
+			ItemType intersectionNode;
+			cout << "Length of list to find intersection: ";
+			int comListSize;
+			int num;
+			cin >> comListSize;
+			cout << "List elements separated by spaces in order: ";
+			while (comListSize-- > 0) {
+				cin>>num;
+				intersectionNode.initialize(num);
+				intersector.insertItem(intersectionNode);
+			}
+			cout << "List 1: ";
+			list.printList();
+			cout << "List 2: ";
+			intersector.printList();
+			cout << "Intersection:";
+			list.findCommon(intersector);
+			cout << endl;
+			//list.printList();
+			break;
+		}
 		case 'p':
 			list.printList();
 			break;

@@ -41,13 +41,16 @@ public:
     void printList();
 
     /* Takes two lists and merges them, sorting them into a new sorted list. */
-    SortedLinkedList merge(SortedLinkedList toMerge);
+    SortedLinkedList merge(SortedLinkedList list, SortedLinkedList toMerge);
 
     /* Deletes alternating nodes in a linked list, skipping the first node. */
     void deleteAlternatingNodes();
 
     /* Finds the common elements in two sorted linked lists and returns a sorted list of those common elements. */
     void findCommon(SortedLinkedList comm);
+
+    /* Returns the head of a given list. */
+    ListNode* getHead();
 
 private:
     ListNode *head;

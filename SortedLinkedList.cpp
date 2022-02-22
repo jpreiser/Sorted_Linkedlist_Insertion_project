@@ -149,7 +149,7 @@ ItemType SortedLinkedList::getNextItem() {
 		return empty;
 	} else if (currentPos == NULL) {
 		currentPos = head;
-		return currentPos->item;
+		search = currentPos;
 	} else {
 		currentPos = currentPos->next;
 	}
@@ -183,18 +183,52 @@ void SortedLinkedList::printList() {
 }
 
 /* Function for merging two sorted linked lists.*/
-SortedLinkedList SortedLinkedList::merge(SortedLinkedList toMerge) {
+SortedLinkedList SortedLinkedList::merge(SortedLinkedList list, SortedLinkedList toMerge) {
 	SortedLinkedList sorted;
-	int length = toMerge.length();
-	for (int i = 0; i < length; i++) {
-		if(toMerge.searchItem(toMerge.getNode(i)->item) != -1) {
-			cout << "Sorry. You cannot insert the duplicate item." << endl;
-			continue;
+	ListNode* head1 = head;
+	ListNode* head2 = toMerge.getHead();
+	if(head1 == NULL) {
+		return toMerge;
+	}
+	if (head2 == NULL) {
+		return list;
+	}
+
+	ListNode* mergeHead = NULL;
+	if(head1->item.getValue() <= head2->item.getValue()) {
+		mergeHead = head1;
+		sorted.insertItem(mergeHead->item);
+		head1 = head1->next;
+	} else {
+		mergeHead = head2;
+		sorted.insertItem(mergeHead->item);
+		head2 = head2->next;
+	}
+
+	ListNode* mergeTail = mergeHead;
+	ListNode* temp = NULL;
+	while (head1 != NULL && head2 != NULL) {
+		if (head1->item.getValue() < head2->item.getValue()) {
+			temp = head1;
+			head1 = head1->next;
+		} else {
+			temp = head2;
+			head2 = head2->next;
 		}
+		mergeTail->next = temp;
+		mergeTail = temp;
 	}
-	for (int i = 0; i < toMerge.length(); i++) {
-		sorted.insertItem(toMerge.getNode(i)->item);
+
+	if(head1 != NULL) {
+		mergeTail->next = head1;
+	} else if (head2 != NULL) {
+		mergeTail->next = head2;
 	}
+	while (mergeHead != NULL) {
+		sorted.insertItem(mergeHead->item);
+		mergeHead = mergeHead->next;
+	}
+
 	return sorted;
 } // merge
 
@@ -209,27 +243,34 @@ void SortedLinkedList::deleteAlternatingNodes() {
 		deleter = deleter->next;
 		odd = odd + 1;
 	}
-}
+} // deleteAlt
 
 /* Prints out the common elements between the called list and provided list. */
 void SortedLinkedList::findCommon(SortedLinkedList comm) {
 	SortedLinkedList common;
-	for (int i = 0; i < comm.length(); i++) {
-		ListNode* temp = comm.getNode(i);
-		if (searchItem(temp->item) != -1) {
-			common.insertItem(temp->item);
+	ListNode* head1 = head;
+	ListNode* head2 = comm.getHead();
+	ListNode* current1 = head1;
+	ListNode* current2 = head2;
+	if (head1 == NULL || head2 == NULL) {
+		cout << "No Elements in common." << endl;
+	}
+	while (current1 != NULL) {
+		while (current2 != NULL) {
+			if (current1->item.getValue() == current2->item.getValue()) {
+				cout << " " << current1->item.getValue();
+			}
+			current2 = current2->next;
 		}
+		current1 = current1->next;
+		current2 = head2;
 	}
+} // common
 
-	while(head != NULL) {
-		deleteItem(head->item);
-	}
-	resetList();
+ListNode* SortedLinkedList::getHead() {
+	return head;
 
-	for (int i = 0; i < common.length(); i++) {
-		insertItem(common.getNextItem());
-	}
-}
+} // getHead
 
 
 
