@@ -20,7 +20,7 @@ SortedLinkedList::~SortedLinkedList() {
 	while(del != NULL) {
 		del = head;
 		head = head->next;
-		delete del;
+		delete(del);
 	}
 } // ~SLL
 
@@ -48,7 +48,6 @@ void SortedLinkedList::insertItem(ItemType toInsert) {
 		temp->item = toInsert;
 		head = temp;
 		currentPos = head;
-		delete(temp);
 		return;
 	}
 
@@ -56,7 +55,6 @@ void SortedLinkedList::insertItem(ItemType toInsert) {
 		temp->item = toInsert;
 		temp->next = head;
 		head = temp;
-		delete(temp);
 		return;
 	}
 
@@ -276,10 +274,3 @@ ListNode* SortedLinkedList::getHead() {
 	return head;
 
 } // getHead
-
-
-
-
-
-
-
