@@ -5,6 +5,7 @@
 #include <iterator>
 #include <string>
 #include <cstring>
+#include <vector>
 #include "ItemType.h"
 #include "ListNode.h"
 #include "SortedLinkedList.h"
@@ -12,17 +13,25 @@
 using namespace std;
 
 //Creates the list from an input file "input.txt"
-void createList(SortedLinkedList list) {
+SortedLinkedList createList() {
 	ifstream sFile("input.txt");
-	int value;
+	vector<int> vals;
+	int num;
+	ItemType item;
+	SortedLinkedList created = SortedLinkedList();
 
-	if (sFile.is_open()) {
-		while (sFile >> value) {
-			ItemType item;
-			item.initialize(value);
-			list.insertItem( item);
-		}
+	if (!sFile.is_open()) {
+		cout << "File not found" << endl;
 	}
+	while (sFile >> num) {
+		vals.push_back(num);
+	}
+	for(const auto &i: vals) {
+		item.initialize(i);
+		created.insertItem(item);
+	}
+	sFile.close();
+	return created;
 } // create
 
 int main(int argc, char *argv[]) {
@@ -38,7 +47,8 @@ int main(int argc, char *argv[]) {
 
 	// create the linked list
 	SortedLinkedList list = SortedLinkedList();
-	createList(list);
+	list = createList();
+	list.printList();
 
 	char choice;
 	int val;
@@ -87,10 +97,14 @@ int main(int argc, char *argv[]) {
 			list.deleteItem(toDel);
 			break;
 		case 's':
-			cout << "Enter a value to search: " << endl;
+			cout << "Enter a value to search: ";
 			cin >> val;
 			toFind.initialize(val);
-			cout << "Index " << list.searchItem(toFind) << endl;
+			if (list.searchItem(toFind) > -1) {
+				cout << "Index " << list.searchItem(toFind) << endl;
+			} else {
+				cout << "Item not found." << endl;
+			}
 			break;
 		case 'n':
 			cout << "n" << endl;

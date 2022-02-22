@@ -16,8 +16,8 @@ SortedLinkedList::SortedLinkedList() {
 
 /* Free up all the user allocated memory and destroy the SLL instance. */
 SortedLinkedList::~SortedLinkedList() {
-	ListNode* del;
-	while(head != NULL) {
+	ListNode* del = NULL;
+	while(del != NULL) {
 		del = head;
 		head = head->next;
 		delete del;
@@ -35,15 +35,15 @@ const int SortedLinkedList::length() {
 		counter = counter->next;
 		length = length + 1;
 	}
-
 	return length;
 } // length
 
 /* Insert item into the linked list while maintaining the ascending order of the list. */
 void SortedLinkedList::insertItem(ItemType toInsert) {
 	ListNode* temp = new ListNode();
-	ListNode* loc = head;
 	ListNode* prev = new ListNode();
+	ListNode* loc = head;
+
 
 	if(head == NULL) {
 		temp->item = toInsert;
@@ -63,8 +63,7 @@ void SortedLinkedList::insertItem(ItemType toInsert) {
 		if(toInsert.compareTo(loc->item) == ItemType::GREATER) {
 			break;
 		} else if (toInsert.compareTo(loc->item) == ItemType::EQUAL) {
-			cout << "Cannot insert duplicate item." << endl;
-			delete temp;
+			cout << "Sorry. You cannot insert the duplicate item." << endl;
 			return;
 		}
 		prev = loc;
@@ -78,7 +77,6 @@ void SortedLinkedList::insertItem(ItemType toInsert) {
 	} else {
 		head = temp;
 	}
-
 } // insert
 
 /* ListNode that contains item should be deleted. */
@@ -90,17 +88,14 @@ void SortedLinkedList::deleteItem(ItemType item) {
 	// Deleting from an empty list
 	if (head == NULL) {
 		cout << "You cannot delete from an empty list." << endl;
-		return;
 	} else if (length() == 1) {
 		if (item.compareTo(head->item) == ItemType::EQUAL) {
 			deleter = head;
-			delete deleter;
 			head = NULL;
 			currentPos = head;
 		} else {
 			cout << "Item not found." << endl;
 		}
-		return;
 	}
 
 	//Locating in  normal list
@@ -115,16 +110,13 @@ void SortedLinkedList::deleteItem(ItemType item) {
 
 	if (loc == NULL) {
 		cout << "Item not found." << endl;
-		return;
 	} else if (loc == head) {
 		deleter = head;
 		head = head->next;
 		currentPos = head;
-		delete deleter;
 	} else {
 		deleter = loc->next;
 		prevloc->next = deleter;
-		delete loc;
 	}
 } // delete
 
@@ -145,8 +137,6 @@ int SortedLinkedList::searchItem(ItemType item) {
 			}
 		}
 	}
-	//item not found
-	cout << "Item not found" << endl;
 	return -1;
 } // searchItem
 
