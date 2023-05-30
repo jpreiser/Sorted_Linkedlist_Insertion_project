@@ -1,7 +1,3 @@
-Jacob Reiser
-810 687 011
-Data Structures Assignment 2
-
 To compile the code, type 'make' into the command line.
 
 To run, type './make input.txt' or './make empty.txt' into the command line.
